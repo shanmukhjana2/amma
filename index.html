@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Happy Birthday Amma ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary: #ff758c;
+  --secondary: #ff7eb3;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #000;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* 📱 REEL CONTAINER */
+.reel {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 🖼 SLIDES WITH VIGNETTE */
+.slide-container {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+  transform: scale(1.1); /* Start slightly larger for zoom out effect */
+}
+
+.slide-container.active {
+  opacity: 1;
+  transform: scale(1); /* Zoom out to original size */
+  transition: opacity 2s ease-in-out, transform 7s ease-out;
+}
+
+.slide-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: none; /* Ensures images fill the screen properly */
+}
+
+/* Gradient Overlay for Readability */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, 
+    rgba(0,0,0,0.2) 0%, 
+    transparent 50%, 
+    rgba(0,0,0,0.8) 100%);
+}
+
+/* 💬 ANIMATED TEXT BOX */
+.text-box {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  text-align: center;
+  z-index: 20;
+}
+
+.text-box h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3rem;
+  color: rgb(17, 16, 16);
+  margin-bottom: 10px;
+  text-shadow: 0 0 20px rgba(255,117,140,0.8);
+}
+
+.text-box p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 1s ease;
+}
+
+/* ✨ FLOATING BOKEH PARTICLES */
+.particle {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.4;
+  pointer-events: none;
+  animation: floatUp linear infinite;
+  box-shadow: 0 0 10px white;
+}
+
+
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  20% { opacity: 0.4; }
+  100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+}
+
+/* 🔊 START SCREEN */
+.welcome-screen {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, #1a1a1a, #000);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1.2s ease-in-out;
+}
+
+.heart-btn {
+  font-size: 4rem;
+  cursor: pointer;
+  animation: pulse 2s infinite;
+  background: none;
+  border: none;
+  transition: transform 0.3s;
+}
+
+.heart-btn:active {
+  transform: scale(0.9);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); filter: drop-shadow(0 0 0px var(--primary)); }
+  50% { transform: scale(1.15); filter: drop-shadow(0 0 20px var(--primary)); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 0px var(--primary)); }
+}
+
+.tap-text {
+  margin-top: 20px;
+  letter-spacing: 3px;
+  font-size: 0.8rem;
+  color: var(--primary);
+  text-transform: uppercase;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+  <source src="birthday-music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="welcome-screen" id="welcome" onclick="startExperience()">
+  <button class="heart-btn">❤️</button>
+  <p class="tap-text">Tap to start your surprise</p>
+</div>
+
+<div class="reel">
+  <div class="slide-container active"><img src="amma 1.jpeg"><div class="overlay"></div></div>
+  <div class="slide-container"><img src="amma 2.jpeg"><div class="overlay"></div></div>
+  <div class="slide-container"><img src="amma3.jpeg"><div class="overlay"></div></div>
+  <div class="slide-container"><img src="amma4.jpeg"><div class="overlay"></div></div>
+  <div class="slide-container"><img src="amma5.jpeg"><div class="overlay"></div></div>
+  <div class="slide-container"><img src="amma6.jpeg"><div class="overlay"></div></div>
+  <div class="slide-container"><img src="amma7.jpeg"><div class="overlay"></div></div>
+  <div class="slide-container"><img src="amma8.jpeg"><div class="overlay"></div></div>
+  <div class="slide-container"><img src="amma9.jpeg"><div class="overlay"></div></div>
+
+  <div class="text-box">
+    <h1 id="title">Happy Birthday Amma</h1>
+    <p id="para">The queen of my heart and the woman who taught me to dream big.</p>
+  </div>
+</div>
+
+<script>
+const slides = document.querySelectorAll(".slide-container");
+const messages = [
+  ["Happy Birthday Amma 🎉", "Happy birthday to the queen of my heart! I love you, Mom.Happy birthday to the woman who taught me to dream big and stand tall.Your love is my greatest blessing. Wishing you a day filled with all the joy you bring to everyone.Thank you for all your love, guidance, and endless support.You're my rock, Mom.Happy birthday to my biggest cheerleader and confidante. I don't know what I'd do without you.You have a heart of gold, Mom. I hope you feel as cherished today as you make us feel every day."],
+  ["My Greatest Blessing ❤️", "Wishing you a day filled with all the joy you bring to everyone."],
+  ["You Are Special ✨", "Thank you for all your love, guidance, and endless support."],
+  ["My Rock 💖", "Happy birthday to my biggest cheerleader and confidante."],
+  ["Heart of Gold 🌟", "I hope you feel as cherished today as you make us feel every day."],
+  ["I Love You 😘", "Your love is the greatest gift I have ever received."]
+];
+
+let current = 0;
+let started = false;
+
+function updateSlide() {
+  // Slide logic
+  slides.forEach(s => s.classList.remove("active"));
+  slides[current].classList.add("active");
+
+  // Text update with smooth fade
+  const t = document.getElementById("title");
+  const p = document.getElementById("para");
+  const msg = messages[current % messages.length];
+
+  t.style.opacity = 0;
+  p.style.opacity = 0;
+  t.style.transform = "translateY(10px)";
+  
+  setTimeout(() => {
+    t.innerText = msg[0];
+    p.innerText = msg[1];
+    t.style.opacity = 1;
+    p.style.opacity = 1;
+    t.style.transform = "translateY(0)";
+  }, 800);
+
+  current = (current + 1) % slides.length;
+}
+
+function startExperience() {
+  if (started) return;
+  started = true;
+  
+  const welcome = document.getElementById("welcome");
+  welcome.style.opacity = "0";
+  setTimeout(() => welcome.remove(), 1200);
+  
+  document.getElementById("music").play();
+  
+  // Initial call and loop
+  updateSlide();
+  setInterval(updateSlide, 5000);
+  spawnParticles();
+}
+
+function spawnParticles() {
+  setInterval(() => {
+    const p = document.createElement("div");
+    p.className = "particle";
+    const size = Math.random() * 6 + 2 + "px";
+    p.style.width = size;
+    p.style.height = size;
+    p.style.left = Math.random() * 100 + "vw";
+    p.style.bottom = "-20px";
+    p.style.animationDuration = Math.random() * 4 + 4 + "s";
+    p.style.opacity = Math.random() * 0.5 + 0.2;
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 8000);
+  }, 250);
+}
+</script>
+
+</body>
+</html>
